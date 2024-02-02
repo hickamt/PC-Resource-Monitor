@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
 
     // Listen for messages
     socket.addEventListener("message", (event) => {
-      console.log("Message from server:\n", event.data);
+      // console.log("Message from server:\n", event.data);
       const resources = JSON.parse(event.data);
       setSystemInformation(resources);
     });
