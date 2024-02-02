@@ -2,6 +2,13 @@ import { AuthContext } from "../AuthProvider";
 import { useContext } from "react";
 import "./styles/styles.css";
 
+/**
+ * @TODO
+ * Show the CPU Information as a header
+ * Show the total process time for all cores next to header
+ * Show each cores usage next to CORE #: totalCoreUsage = (total - idle) / total * 100
+ */
+
 // eslint-disable-next-line react/prop-types
 function CpuUsage({ core, system, user, nice, idle, irq }) {
   const total = system + user + nice + idle + irq;
