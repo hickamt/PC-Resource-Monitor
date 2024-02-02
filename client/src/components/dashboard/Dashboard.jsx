@@ -13,10 +13,6 @@ import "./styles/styles.css";
 function CpuUsage({ core, system, user, nice, idle, irq }) {
   const total = system + user + nice + idle + irq;
 
-  if (total === 0) {
-    return <div className="cpu-error">Core Total Time 0</div>;
-  }
-
   const systemPct = (system / total) * 100;
   const userPct = (user / total) * 100;
   const nicePct = (nice / total) * 100;
@@ -37,31 +33,39 @@ function CpuUsage({ core, system, user, nice, idle, irq }) {
 
 function Dashboard() {
   const { systemInformation } = useContext(AuthContext);
-  console.table("Dashboard Sys Info: ", systemInformation.cpuUsage);
 
-  const cpuUsageComponents = systemInformation.cpuUsage.map((cpu, index) => {
+  /**
+   * @todo create a loading animation while websocket connection is being made
+   * and resources are being created from server side.
+   */
+  if (systemInformation === undefined || systemInformation.cpuUsage === undefined) {
+    return <div className="is-loading">Loading PC Resources . . .</div>;
+  } else {
+    console.log("PC Resources:\n", systemInformation)
+    const cpuUsageComponents = systemInformation.cpuUsage.map((cpu, index) => {
+      return (
+        <CpuUsage
+          core={index + 1}
+          system={cpu.times.sys}
+          user={cpu.times.user}
+          nice={cpu.times.nice}
+          idle={cpu.times.idle}
+          irq={cpu.times.irq}
+          key={index}
+        />
+      );
+    });
+
     return (
-      <CpuUsage
-        core={index + 1}
-        system={cpu.times.sys}
-        user={cpu.times.user}
-        nice={cpu.times.nice}
-        idle={cpu.times.idle}
-        irq={cpu.times.irq}
-        key={index}
-      />
+      <div className="grid-container">
+        <div className="grid-item col1">{cpuUsageComponents}</div>
+        <div className="grid-item col2">Column 2, Row 1</div>
+        <div className="grid-item col3">Column 3, Row 1 & 2</div>
+        <div className="grid-item col4">Column 1, Row 2</div>
+        <div className="grid-item col5">Column 2, Row 2</div>
+      </div>
     );
-  });
-
-  return (
-    <div className="grid-container">
-      <div className="grid-item col1">{cpuUsageComponents}</div>
-      <div className="grid-item col2">Column 2, Row 1</div>
-      <div className="grid-item col3">Column 3, Row 1 & 2</div>
-      <div className="grid-item col4">Column 1, Row 2</div>
-      <div className="grid-item col5">Column 2, Row 2</div>
-    </div>
-  );
+  }
 }
 
 export default Dashboard;

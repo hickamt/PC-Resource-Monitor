@@ -22,8 +22,10 @@ app.use(express.json());
 app.use("/", express.static(path.join(__dirname, "/public")));
 app.use("/", require("./routes/root")); // serving the static html index.js file
 
+console.log("In Server.js file")
+
 // API ENDPOINTS
-app.use("local_state", require("./routes/api/local_state"));
+// app.use("local_state", require("./routes/api/local_state"));
 
 // Catch all for page request not matching an endpoint
 app.all("*", (req, res) => {
@@ -56,6 +58,7 @@ wss.on("connection", (ws) => {
     try {
       const resources = await pcResourcesController.getResources();
       ws.send(JSON.stringify(resources));
+      console.log("Server Resources: ", resources)
     } catch (error) {
       console.error("Unable to get system resources", error);
     }

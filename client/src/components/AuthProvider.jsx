@@ -13,12 +13,12 @@ const AuthProvider = ({ children }) => {
 
     // Connection opened
     socket.addEventListener("open", () => {
+      console.log("Client WS Connection Open")
       socket.send("WebSocket Connection Open");
     });
 
     // Listen for messages
     socket.addEventListener("message", (event) => {
-      // console.log("Message from server:\n", event.data);
       const resources = JSON.parse(event.data);
       setSystemInformation(resources);
     });

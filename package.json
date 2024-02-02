@@ -6,8 +6,8 @@
     "dev": "concurrently \"yarn server\" \"yarn client\"",
     "setup": "cd server && yarn && cd ../client && yarn",
     "teardown": "cd server && rm -rf yarn.lock && cd ../client && rm -rf yarn.lock node_modules",
-    "client": "cd client && yarn dev",
-    "server": "cd server && yarn dev"
+    "server": "cd server && yarn dev",
+    "client": "cd client && yarn dev"
   },
   "dependencies": {},
   "devDependencies": {

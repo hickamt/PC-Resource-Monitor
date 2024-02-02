@@ -16,6 +16,7 @@ const systemInformation = require("systeminformation");
  * @returns this pc's resources back to the websocket call from the server.js
  */
 const getResources = async () => {
+  console.log("Get Resources Controller was Called")
   let graphicsData = null;
   try {
     const cpuUsage = os.cpus();
