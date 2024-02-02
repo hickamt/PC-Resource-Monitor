@@ -15,7 +15,6 @@ async function expressAPI(endpoint) {
         "Content-Type": "application/json",
       },
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error(

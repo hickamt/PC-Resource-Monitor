@@ -12,25 +12,25 @@ const AuthProvider = ({ children }) => {
     const socket = new WebSocket("ws://localhost:5500");
 
     // Connection opened
-    socket.addEventListener("open", (event) => {
+    socket.addEventListener("open", () => {
       socket.send("WebSocket Connection Open");
     });
 
     // Listen for messages
     socket.addEventListener("message", (event) => {
-      console.log("Message from server ", event.data);
+      console.log("Message from server:\n", event.data);
       const resources = JSON.parse(event.data);
       setSystemInformation(resources);
     });
 
     // Connection closed
     socket.addEventListener("close", (event) => {
-      console.log("Server connection closed ", event.code);
+      console.log("Server connection closed:\n", event.code);
     });
 
     // Connection error
     socket.addEventListener("error", (event) => {
-      console.error("WebSocket error observed:", event);
+      console.error("WebSocket error observed:\n", event);
     });
 
     // Cleanup function to close the socket when the component unmounts
