@@ -16,22 +16,17 @@ const systemInformation = require("systeminformation");
  * @returns this pc's resources back to the websocket call from the server.js
  */
 const getResources = async () => {
-  console.log("Get Resources Controller was Called")
   let graphicsData = null;
   try {
     const cpuUsage = os.cpus();
     const totalMemory = os.totalmem();
     const freeMemory = os.freemem();
     const networkInterfaces = os.networkInterfaces();
-
     const path = os.platform() === "win32" ? "c:" : "/";
     const diskUsage = await diskusage.check(path);
 
-    // GPU Information (may not work on all pc's)
     try {
       graphicsData = await systemInformation.graphics();
-      console.log("Controllers: ", graphicsData.controllers)
-      console.log("Displays: ", graphicsData.displays)
     } catch (error) {
       console.error(
         `Your pc does not meet the requirements for GPU system information. 
