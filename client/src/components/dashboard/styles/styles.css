@@ -51,3 +51,9 @@ body {
 .grid-item.col5 {
   grid-area: col5;
 }
+
+/* Grid Item Col1 | Header */
+
+.grid-item.col1 .cpu-header {
+  margin: 0 auto;
+}

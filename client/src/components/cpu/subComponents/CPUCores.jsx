@@ -25,12 +25,12 @@ function CPUCore({ core, system, user, nice, idle, irq }) {
 
   return (
     <div className={`grid-item-${core}`}>
-      <h3>CORE {core}: {coreTotal.toFixed(2)}%</h3>
-      <p>System: {systemPct.toFixed(2)}%</p>
+      <h4>CORE {core}: ({coreTotal.toFixed(2)}%)</h4>
+      <p>Sys: {systemPct.toFixed(2)}%</p>
       <p>User: {userPct.toFixed(2)}%</p>
       <p>Nice: {nicePct.toFixed(2)}%</p>
       <p>Idle: {idlePct.toFixed(2)}%</p>
-      <p>IntIRQ: {irqPct.toFixed(2)}%</p>
+      <p>IRQ: {irqPct.toFixed(2)}%</p>
     </div>
   );
 }

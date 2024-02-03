@@ -24,7 +24,10 @@ function Dashboard() {
     return (
       <div className="grid-container">
         <div className="grid-item col1">
-          <h3 className="cpu-header">{systemInformation.cpuUsage[0].model} ({totalCoreUsage(systemInformation.cpuUsage).toFixed(2)}%)</h3>
+          <h3 className="cpu-header">
+            {systemInformation.cpuUsage[0].model} | CPU (
+            {totalCoreUsage(systemInformation.cpuUsage).toFixed(2)}%)
+          </h3>
           <CPU systemInformation={systemInformation} />
         </div>
         <div className="grid-item col2">Column 2, Row 1</div>
