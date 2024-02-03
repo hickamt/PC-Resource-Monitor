@@ -14,6 +14,7 @@ function TraceRoute({ setTraceRouteData }) {
     event.preventDefault();
     if (domain) {
       const data = await expressPostAPI("traceroute", domain);
+      console.log("Trace Route Data: ", data)
       setTraceRouteData(data);
       setDomain(""); // reset the domain state
     }

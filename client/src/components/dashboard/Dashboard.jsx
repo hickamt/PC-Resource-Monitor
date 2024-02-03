@@ -42,7 +42,16 @@ function Dashboard() {
         {/* GRID 2 */}
         <div className="grid-item col2">Column 2, Row 1</div>
         {/* GRID 3 */}
-        <div className="grid-item col3">Column 3, Row 1 & 2</div>
+        <div className="grid-item col3">
+          {tracerouteData && tracerouteData.data && 
+            tracerouteData.data.map((data, index) => {
+              return (
+                <div key={index}>
+                  Hop: {data.hop}, IP: {data.ip}, RTT1: {data.rtt1}
+                </div>
+              );
+            })}
+        </div>
         {/* GRID 4 | Disk & Memory */}
         <div className="grid-item col4">
           {/* GRID 4 SubGrid 1 | Disk */}
@@ -70,7 +79,7 @@ function Dashboard() {
         <div className="grid-item col5">
           <h3 className="pentest-container">TCPDump & Traceroute</h3>
           <TraceRoute setTraceRouteData={setTraceRouteData} />
-          </div>
+        </div>
       </div>
     );
   }
