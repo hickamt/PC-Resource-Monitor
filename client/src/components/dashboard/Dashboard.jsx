@@ -4,8 +4,9 @@ import { useContext } from "react";
 // Components
 import CPU from "../cpu/CPU";
 import DiskUsage from "../disk/DiskUsage";
+import MemoryUsage from "../memory/MemoryUsage";
 
-// Module Helper Functions
+// Module Helper Function: in /cpu modules directory
 import { totalCoreUsage } from "../cpu/modules/cpuCalculations";
 
 // Dashboard CSS Styles
@@ -36,8 +37,14 @@ function Dashboard() {
         <div className="grid-item col2">Column 2, Row 1</div>
         <div className="grid-item col3">Column 3, Row 1 & 2</div>
         <div className="grid-item col4">
-          <h3 className="disk-header">Disk Usage</h3>
-          <DiskUsage diskUsage={systemInformation.diskUsage} />
+          <div className="disk-container">
+            <h3 className="disk-header">Disk Usage</h3>
+            <DiskUsage diskUsage={systemInformation.diskUsage} />
+          </div>
+          <div className="memory-container">
+            <h3 className="memory-header">Memory Usage</h3>
+            <MemoryUsage systemInformation={systemInformation} />
+          </div>
         </div>
         <div className="grid-item col5">Column 2, Row 2</div>
       </div>

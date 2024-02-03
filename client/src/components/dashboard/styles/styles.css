@@ -15,10 +15,11 @@ body {
   align-items: stretch;
   width: 100vw;
   height: 100vh;
+  background-color: rgba(43, 57, 207, 0.1);
 }
 
 .grid-item {
-  border: 1px solid black;
+  border: 1px solid rgba(43, 57, 207, 0.5);
   padding: 20px;
 }
 
@@ -26,11 +27,12 @@ body {
   grid-area: col1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto repeat(2, 1fr); /* 3-rows: header + 2 rows */
-  gap: 10px; /* optional: add some gap between the grid items */
+  grid-template-rows: auto repeat(3, 1fr);
+  gap: 10px;
 }
 
 .cpu-header {
+  margin: 0 auto;
   grid-row: 1;
   grid-column: 1 / span 4;
 }
@@ -46,14 +48,22 @@ body {
 
 .grid-item.col4 {
   grid-area: col4;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}
+
+.disk-container {
+  grid-row: 1;
+  border: 1px solid white;
+}
+
+.memory-container {
+  grid-row: 2;
+  border: 1px solid white;
 }
 
 .grid-item.col5 {
   grid-area: col5;
-}
-
-/* Grid Item Col1 | Header */
-
-.grid-item.col1 .cpu-header {
-  margin: 0 auto;
 }
