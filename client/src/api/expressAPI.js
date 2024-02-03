@@ -19,6 +19,7 @@ async function expressPostAPI(endpoint, data) {
         },
       }
     );
+    console.log("API Response: ", response)
     return response;
   } catch (error) {
     console.error(

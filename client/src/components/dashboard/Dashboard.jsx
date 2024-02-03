@@ -1,5 +1,5 @@
 import { AuthContext } from "../AuthProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 // Components
 import CPU from "../cpu/CPU";
@@ -15,6 +15,7 @@ import TraceRoute from "../traceroute/TraceRoute";
 
 function Dashboard() {
   const { systemInformation } = useContext(AuthContext);
+  const [tracerouteData, setTraceRouteData] = useState({});
 
   /**
    * @todo create a loading animation while websocket connection is being made
@@ -68,7 +69,7 @@ function Dashboard() {
         {/* GRID 5 */}
         <div className="grid-item col5">
           <h3 className="pentest-container">TCPDump & Traceroute</h3>
-          <TraceRoute />
+          <TraceRoute setTraceRouteData={setTraceRouteData} />
           </div>
       </div>
     );

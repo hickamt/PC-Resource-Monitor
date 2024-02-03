@@ -6,13 +6,14 @@ import "./styles/styles.css";
 // POST API
 import expressPostAPI from "../../api/expressAPI";
 
-function TraceRoute() {
+function TraceRoute({ setTraceRouteData }) {
   const [domain, setDomain] = useState("");
 
   const handleTraceRoute = async (event) => {
     event.preventDefault();
     if (domain) {
-      await expressPostAPI("traceroute", domain);
+      const data = await expressPostAPI("traceroute", domain);
+      setTraceRouteData(data);
       setDomain(""); // reset the domain state
     }
   };
