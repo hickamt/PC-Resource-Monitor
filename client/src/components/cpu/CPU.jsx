@@ -1,4 +1,8 @@
+// Sub Components
 import CPUCores from "./subComponents/CPUCores";
+
+// Local Component Styles
+import "./styles/styles.css"
 
 /**
  * Creates to display all cpu cores and their resource usage information 
