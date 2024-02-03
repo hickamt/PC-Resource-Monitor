@@ -10,9 +10,16 @@ export const totalCoreUsage = (cpuUsage) => {
 
   cpuUsage.map((cpu) => {
     inUse = cpu.times.irq + cpu.times.nice + cpu.times.sys + cpu.times.user;
-    total = cpu.times.irq + cpu.times.nice + cpu.times.sys + cpu.times.user + cpu.times.idle;
-    usagePercent += inUse / total;
+    total =
+      cpu.times.irq +
+      cpu.times.nice +
+      cpu.times.sys +
+      cpu.times.user +
+      cpu.times.idle;
+    if (total && total !== 0) {
+      usagePercent += inUse / total;
+    }
   });
 
-  return (usagePercent) * 100;
+  return usagePercent * 100;
 };
