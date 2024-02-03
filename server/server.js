@@ -25,7 +25,9 @@ app.use("/", require("./routes/root")); // serving the static html index.js file
 console.log("In Server.js file")
 
 // API ENDPOINTS
-// app.use("local_state", require("./routes/api/local_state"));
+app.use("local_state", require("./routes/api/local_state"));
+app.use("traceroute", require("./routes/api/traceroute"));
+
 
 // Catch all for page request not matching an endpoint
 app.all("*", (req, res) => {
