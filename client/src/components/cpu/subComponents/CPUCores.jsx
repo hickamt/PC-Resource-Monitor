@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  * @TODO
  * Show the CPU Information as a header
@@ -7,12 +8,16 @@
 
 /**
  * Expects systemInformation.properties as params
- * Creates a single cpu core instance mapped from CPU component
- * @param {context objects} param0
- * @returns a single CPU resource information component
+ * Creates a single cpu core resource element mapped from CPU component
+ * @param {number} core
+ * @param {number} system
+ * @param {number} user
+ * @param {number} nice
+ * @param {number} idle
+ * @param {number} irq
+ * @returns a single CPU resource information component with all
+ * values in percentage of use.
  */
-
-// eslint-disable-next-line react/prop-types
 function CPUCore({ core, system, user, nice, idle, irq }) {
   const total = system + user + nice + idle + irq;
 

@@ -12,7 +12,8 @@ import "./styles/styles.css"
  * - nice, processes that are lower priority
  * - idle, idle time for each core
  * - irq, system interrupt processes
- * @param {context object} systemInformation passed down from dashboard
+ * @param {number} key
+ * @param {object: {times: {sys: number, user: number, nice: number, idle: number, irq: number}}} systemInformation passed down from dashboard
  * @returns the cpu cores information
  */
 function CPU({ systemInformation }) {
