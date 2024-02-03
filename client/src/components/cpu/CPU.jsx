@@ -1,7 +1,7 @@
 import CPUCores from "./subComponents/CPUCores";
 
 /**
- * Creates the component which displays each cpu core and its usage information 
+ * Creates to display all cpu cores and their resource usage information 
  * - core #
  * - system, usage by the kernel process
  * - user, usage by user less system kernel processes

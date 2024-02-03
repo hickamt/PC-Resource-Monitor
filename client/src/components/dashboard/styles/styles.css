@@ -25,9 +25,14 @@ body {
 .grid-item.col1 {
   grid-area: col1;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns */
-  grid-template-rows: repeat(2, 1fr); /* 2 rows */
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto repeat(2, 1fr); /* 3-rows: header + 2 rows */
   gap: 10px; /* optional: add some gap between the grid items */
+}
+
+.cpu-header {
+  grid-row: 1;
+  grid-column: 1 / span 4;
 }
 
 .grid-item.col2 {
