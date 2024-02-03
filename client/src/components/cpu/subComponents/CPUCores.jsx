@@ -21,6 +21,19 @@
 function CPUCore({ core, system, user, nice, idle, irq }) {
   const total = system + user + nice + idle + irq;
 
+  if (!total || total <= 0) {
+    return (
+      <div className="cpu-core-item">
+        <h4>CORE #: (undefined)</h4>
+        <p>Sys: 0%</p>
+        <p>User: 0%</p>
+        <p>Nice: 0%</p>
+        <p>Idle: 0%</p>
+        <p>IRQ: 0%</p>
+      </div>
+    );
+  }
+
   const coreTotal = ((total - idle) / total) * 100;
   const systemPct = (system / total) * 100;
   const userPct = (user / total) * 100;
@@ -29,7 +42,7 @@ function CPUCore({ core, system, user, nice, idle, irq }) {
   const irqPct = (irq / total) * 100;
 
   return (
-    <div className={`grid-item-${core}`}>
+    <div className="cpu-core-item">
       <h4>
         CORE {core}: ({coreTotal.toFixed(2)}%)
       </h4>

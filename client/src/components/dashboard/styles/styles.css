@@ -23,7 +23,7 @@ body {
   padding: 20px;
 }
 
-/* GRID 1 */
+/* GRID 1 | CPU */
 .grid-item.col1 {
   grid-area: col1;
   display: grid;
@@ -51,7 +51,7 @@ body {
   grid-area: col3;
 }
 
-/* GRID 4  */
+/* GRID 4 | Disk & Memory  */
 .grid-item.col4 {
   grid-area: col4;
   display: grid;
@@ -84,7 +84,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  border: 1px solid white;
+  border: 1px solid white; /* added for testing */
 }
 
 /* GRID 5 */
