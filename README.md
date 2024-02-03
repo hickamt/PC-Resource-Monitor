@@ -37,3 +37,14 @@ yarn teardown
 ```
 
 This might be useful if you want to copy the directory to a zip without dragging the entire node_modules library with you.
+
+## Dependencies
+
+You will need the following packages installed on your local pc.
+
+- [Traceroute: Overview by DreamHost](https://help.dreamhost.com/hc/en-us/articles/215840708-Traceroute)
+
+```bash
+# Install Traceroute
+sudo apt update && sudo apt upgrade -y && sudo apt install traceroute
+```

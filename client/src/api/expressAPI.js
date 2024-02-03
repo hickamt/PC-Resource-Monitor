@@ -1,20 +1,24 @@
 import axios from "axios";
 
 /**
- * GET request to localhost server (running on port:5500) 
+ * POST request to localhost server (running on port:5500)
  * @param {string} endpoint should be a string corresponding to the correct server endpoint
  * Current GET Request Endpoints:
- * - pc_resources
+ * - traceroute: {body.data: {data: string}}
  * - local_state
- * @returns the GET request object
+ * @returns the Post request object
  */
-async function expressAPI(endpoint) {
+async function expressPostAPI(endpoint, data) {
   try {
-    const response = await axios.get(`http://localhost:5500/${endpoint}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await axios.post(
+      `http://localhost:5500/${endpoint}`,
+      { data: data },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     return response;
   } catch (error) {
     console.error(
@@ -24,4 +28,4 @@ async function expressAPI(endpoint) {
   }
 }
 
-export default expressAPI;
+export default expressPostAPI;
