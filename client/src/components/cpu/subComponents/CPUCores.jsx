@@ -7,8 +7,8 @@
 
 /**
  * Expects systemInformation.properties as params
- * Creates a single cpu core instance mapped from CPU component 
- * @param {context objects} param0 
+ * Creates a single cpu core instance mapped from CPU component
+ * @param {context objects} param0
  * @returns a single CPU resource information component
  */
 
@@ -25,7 +25,9 @@ function CPUCore({ core, system, user, nice, idle, irq }) {
 
   return (
     <div className={`grid-item-${core}`}>
-      <h4>CORE {core}: ({coreTotal.toFixed(2)}%)</h4>
+      <h4>
+        CORE {core}: ({coreTotal.toFixed(2)}%)
+      </h4>
       <p>Sys: {systemPct.toFixed(2)}%</p>
       <p>User: {userPct.toFixed(2)}%</p>
       <p>Nice: {nicePct.toFixed(2)}%</p>

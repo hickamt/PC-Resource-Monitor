@@ -30,6 +30,8 @@ const getResources = async () => {
     // GPU Information (may not work on all pc's)
     try {
       graphicsData = await systemInformation.graphics();
+      console.log("Controllers: ", graphicsData.controllers)
+      console.log("Displays: ", graphicsData.displays)
     } catch (error) {
       console.error(
         `Your pc does not meet the requirements for GPU system information. 

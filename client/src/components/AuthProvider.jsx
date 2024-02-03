@@ -8,33 +8,50 @@ const AuthProvider = ({ children }) => {
   const [systemInformation, setSystemInformation] = useState({});
 
   useEffect(() => {
-    // Create WebSocket connection.
-    const socket = new WebSocket("ws://localhost:5500");
+    let socket = null;
+    let attempts = 0;
+    const maxAttempts = 5; // maximum number of reconnection attempts
 
-    // Connection opened
-    socket.addEventListener("open", () => {
-      console.log("Client WS Connection Open")
-      socket.send("WebSocket Connection Open");
-    });
+    const connect = () => {
+      if (attempts >= maxAttempts) {
+        console.log("Max reconnection attempts reached. Not reconnecting.");
+        return;
+      }
 
-    // Listen for messages
-    socket.addEventListener("message", (event) => {
-      const resources = JSON.parse(event.data);
-      setSystemInformation(resources);
-    });
+      // Create WebSocket connection.
+      socket = new WebSocket("ws://localhost:5500");
 
-    // Connection closed
-    socket.addEventListener("close", (event) => {
-      console.log("Server connection closed:\n", event.code);
-    });
+      // Connection opened
+      socket.addEventListener("open", () => {
+        console.log("Client WS Connection Open");
+        socket.send("WebSocket Connection Open");
+        attempts = 0; // reset attempts count on successful connection
+      });
 
-    // Connection error
-    socket.addEventListener("error", (event) => {
-      console.error("WebSocket error observed:\n", event);
-    });
+      // Listen for messages
+      socket.addEventListener("message", (event) => {
+        const resources = JSON.parse(event.data);
+        setSystemInformation(resources);
+      });
+
+      // Connection closed
+      socket.addEventListener("close", (event) => {
+        console.log("Server connection closed:\n", event.code);
+        attempts++; // increment attempts count
+        console.log("Reconnecting...");
+        setTimeout(connect, 1000); // try to reconnect after a second
+      });
+
+      // Connection error
+      socket.addEventListener("error", (event) => {
+        console.error("WebSocket error observed:\n", event);
+      });
+    };
+
+    connect(); // initial connection
 
     // Cleanup function to close the socket when the component unmounts
-    return () => socket.close();
+    return () => socket && socket.close();
   }, []);
 
   return (
