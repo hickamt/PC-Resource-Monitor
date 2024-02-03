@@ -18,6 +18,8 @@ function Dashboard() {
   /**
    * @todo create a loading animation while websocket connection is being made
    * and resources are being created from server side.
+   * @todo when each grid is complete with data, abstract to their own components
+   * with /styles/styles.css for grid and other graphic stylings
    */
   if (
     systemInformation === undefined ||
@@ -27,6 +29,7 @@ function Dashboard() {
   } else {
     return (
       <div className="grid-container">
+        {/* GRID 1 | CPU */}
         <div className="grid-item col1">
           <h3 className="cpu-header">
             {systemInformation.cpuUsage[0].model} | CPU (
@@ -34,10 +37,13 @@ function Dashboard() {
           </h3>
           <CPU systemInformation={systemInformation} />
         </div>
+        {/* GRID 2 */}
         <div className="grid-item col2">Column 2, Row 1</div>
+        {/* GRID 3 */}
         <div className="grid-item col3">Column 3, Row 1 & 2</div>
-
+        {/* GRID 4 | Disk & Memory */}
         <div className="grid-item col4">
+          {/* GRID 4 SubGrid 1 | Disk */}
           <div className="disk-container">
             <div className="disk-col1">
               <h3 className="disk-header">Disk Usage</h3>
@@ -47,6 +53,7 @@ function Dashboard() {
               <div className="disk-chart">GRAPHICS HERE</div>
             </div>
           </div>
+          {/* GRID 4 SubGrid 2 | Memory */}
           <div className="memory-container">
             <div className="memory-col1">
               <h3 className="memory-header">Memory Usage</h3>
@@ -57,6 +64,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
+        {/* GRID 5 */}
         <div className="grid-item col5">Column 2, Row 2</div>
       </div>
     );
