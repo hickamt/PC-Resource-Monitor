@@ -1,3 +1,10 @@
+/**
+ * @todo
+ * Figure out how to create a unit test config using 'jest' in a Vite framework
+ * Jest will require babel, but this requires NodeJS syntax which does not work
+ * within a client side app. So WTF.
+ * Anyway, cpuCalculations was hand tested and approved by the dude writing this shit.
+ */
 import { totalCoreUsage } from "./cpuCalculations";
 
 describe("totalCoreUsage", () => {
