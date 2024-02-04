@@ -1,7 +1,5 @@
 // Source: https://www.npmjs.com/package/nodejs-traceroute
-const trace = require("nodejs-traceroute");
 const os = require("os");
-const { exec } = require("child_process");
 const wslTraceroute = require("./wsl_linux/wslPlatform");
 const win32Traceroute = require("./win32/win32Platform");
 const linuxTraceroute = require("./linux/linuxPlatform");
@@ -13,18 +11,17 @@ const linuxTraceroute = require("./linux/linuxPlatform");
  * @returns the information gathered from traceroute
  */
 const traceroute = async (req, res) => {
-  const platform = os.platform();
-  const destination = req.body.data;
+  const { destination, traceType } = req.body.data;
 
   console.log("Platform using 'os': ", os.platform());
 
   try {
-    switch (platform) {
-      case "linux":
+    switch (traceType) {
+      case "traceroute":
+        return linuxTraceroute(res, destination, platform);
+      case "tracertWSL":
         return wslTraceroute(res, destination);
-      // return linuxTraceroute(res, destination, platform);
-      case "win32":
-      case "win63":
+      case "tracertWin32":
         return win32Traceroute(res, destination);
       default:
         return res

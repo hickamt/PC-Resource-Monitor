@@ -17,6 +17,7 @@ import TraceRoute from "../traceroute/TraceRoute";
 function Dashboard() {
   const { systemInformation } = useContext(AuthContext);
   const [tracerouteData, setTraceRouteData] = useState({});
+  const [tracertData, setTracertData] = useState({});
 
   /**
    * @todo create a loading animation while websocket connection is being made
@@ -45,13 +46,11 @@ function Dashboard() {
         <div className="grid-item col2">Column 2, Row 1</div>
         {/* GRID 3 */}
         <div className="grid-item col3">
-          {tracerouteData &&
-            tracerouteData.data &&
-            console.log(
-              "Client Trace Data: ",
-              tracerouteData.data
-            )
-            // <TraceRoute tracerouteData={tracerouteData} />
+          {
+            tracerouteData &&
+              tracerouteData.data &&
+              console.log("Client Trace Data: ", tracerouteData.data)
+            // <TraceRoute tracerouteData={tracerouteData} platform={systemInformation.platform} />
           }
         </div>
         {/* GRID 4 | Disk & Memory */}
@@ -81,7 +80,11 @@ function Dashboard() {
         <div className="grid-item col5">
           <div className="traceroute-row1">
             <h3 className="pentest-container">Traceroute</h3>
-            <TraceRouteForm setTraceRouteData={setTraceRouteData} />
+            <TraceRouteForm
+              setTraceRouteData={setTraceRouteData}
+              setTracertData={setTracertData}
+              platform={systemInformation.platform}
+            />
           </div>
           <div className="tcpdump-row2">
             <h3 className="title">Standard Tests</h3>

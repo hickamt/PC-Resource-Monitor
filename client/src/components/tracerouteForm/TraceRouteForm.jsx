@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Styles
 import "./styles/styles.css";
@@ -14,40 +14,63 @@ import expressPostAPI from "../../api/expressAPI";
  * @param {useState setter} setTraceRouteData
  * @returns a form component with text input, submit, and clear buttons
  */
-function TraceRouteForm({ setTraceRouteData }) {
-  const [hostName, setHostName] = useState("");
+function TraceRouteForm({ setTraceRouteData, setTracertData, platform }) {
+  const [targetURL, setTargetURL] = useState("");
+  // API Endpoint Expects traceType: { 'traceroute' || 'tracertWSL' || tracertWin32' }
+  const [traceType, setTraceType] = useState("");
+
+  useEffect(() => {
+    if (platform === "win32") {
+      setTraceType("tracertWin32");
+    }
+  }, [platform]);
+
+  const handleTraceTypeChange = (event) => {
+    setTraceType(event.target.value);
+  };
 
   const handleTraceRoute = async (event) => {
     event.preventDefault();
-    if (hostName) {
-      const data = await expressPostAPI("traceroute", hostName);
-      console.log("Trace Route Data: ", data);
-      setTraceRouteData(data);
-      setHostName(""); // reset the domain state
+    if (targetURL) {
+      const data = await expressPostAPI("traceroute", targetURL);
+      if (traceType === "traceroute") {
+        setTraceRouteData(data);
+      } else {
+        setTracertData(data);
+      }
+      setTargetURL(""); // reset the domain state
     }
   };
 
   const handleInputChange = (event) => {
-    setHostName(event.target.value);
+    setTargetURL(event.target.value);
   };
 
   const clearInput = () => {
-    setHostName("");
+    setTargetURL("");
   };
 
   return (
     <div className="traceroute">
       <form onSubmit={handleTraceRoute}>
         <label htmlFor="domain" className="traceroute-label">
-          Web Host Name:
+          Website Target:
         </label>
         <input
           id="domain"
           type="text"
           className="domain traceroute-input"
-          value={hostName}
+          value={targetURL}
           onChange={handleInputChange}
         />
+
+        {platform === "linux" && (
+          <select value={traceType} onChange={handleTraceTypeChange}>
+            <option value="traceroute">traceroute</option>
+            <option value="tracertWSL">tracertWSL</option>
+          </select>
+        )}
+
         <div className="btn-container">
           <button type="submit" className="submit-btn">
             Submit
