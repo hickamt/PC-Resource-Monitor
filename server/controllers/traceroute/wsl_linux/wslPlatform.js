@@ -36,7 +36,7 @@ const wslTraceroute = async (res, destination) => {
       return res.status(500).json({ message: "Error executing wsl cmd.exe tracert" });
     }
 
-    console.log(`stdout: ${stdout}`);
+    console.log(`wsl tracert stdout: ${stdout}`);
     console.error(`stderr: ${stderr}`);
 
     return res.status(200).json({

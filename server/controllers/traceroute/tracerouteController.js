@@ -2,8 +2,8 @@
 const trace = require("nodejs-traceroute");
 const os = require("os");
 const { exec } = require("child_process");
-const wslTraceroute = require("./wsl_linux/wslPlatform")
-const win32Traceroute = require("./win32/win32Platform")
+const wslTraceroute = require("./wsl_linux/wslPlatform");
+const win32Traceroute = require("./win32/win32Platform");
 const linuxTraceroute = require("./linux/linuxPlatform");
 
 /**
@@ -21,8 +21,8 @@ const traceroute = async (req, res) => {
   try {
     switch (platform) {
       case "linux":
-        return win32Traceroute(res, destination);
-        // return linuxTraceroute(res, destination, platform);
+        return wslTraceroute(res, destination);
+      // return linuxTraceroute(res, destination, platform);
       case "win32":
       case "win63":
         return win32Traceroute(res, destination);
@@ -30,20 +30,6 @@ const traceroute = async (req, res) => {
         return res
           .status(400)
           .json({ message: `Unknown platform ${platform}` });
-    }
-
-    if (os.platform() === "win32" || os.platform() === "win64") {
-      exec(`tracert ${destination}`, (error, stdout, stderr) => {
-        if (error) {
-          console.error(`exec error: ${error}`);
-          return res.status(500).json({ message: "Error executing tracert" });
-        }
-        console.log(`stdout: ${stdout}`);
-        console.error(`stderr: ${stderr}`);
-        return res
-          .status(200)
-          .json({ message: "Tracert executed successfully", data: stdout });
-      });
     }
   } catch (error) {
     console.error(

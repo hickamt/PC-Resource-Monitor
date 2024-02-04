@@ -28,9 +28,9 @@ const linuxTraceroute = async (res, destination) => {
       .on("error", (error) => {
         reject(error);
       });
-
     tracer.trace(destination);
   });
+  console.log("traceroute: ", result)
   return res.status(200).json(result);
 };
 

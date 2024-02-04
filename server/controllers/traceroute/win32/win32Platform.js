@@ -35,11 +35,14 @@ const win32Traceroute = async (res, destination) => {
       console.error(`exec error: ${error}`);
       return res.status(500).json({ message: "Error executing tracert" });
     }
-    console.log(`stdout: ${stdout}`);
+    console.log(`tracert stdout: ${stdout}`);
     console.error(`stderr: ${stderr}`);
-    return res
-      .status(200)
-      .json({ message: "Tracert executed successfully", data: stdout });
+    return res.status(200).json({
+      message: "Tracert executed successfully",
+      data: stdout,
+      parsedData: parseStdout(stdout),
+      destination: destination,
+    });
   });
 };
 
