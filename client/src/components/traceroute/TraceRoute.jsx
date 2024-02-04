@@ -1,7 +1,19 @@
+import LinuxPlatform from "./linuxPlatform/LinuxPlatform";
 
 function TraceRoute({tracerouteData}) {
-  console.log("Trace Route Data: ", tracerouteData)
-  return ;
+  const platform = tracerouteData.data.platform;
+  // console.log("Trace Route PID: ", tracerouteData.data.destPID)
+  // console.log("Trace Route IP: ", tracerouteData.data.ipAddress)
+  // console.table("Trace Route Hops: ", tracerouteData.data.hops)
+
+  switch (platform) {
+    case "linux":
+      return <LinuxPlatform traceData={tracerouteData} />;
+    case "win32":
+      return ;
+    default:
+      return <div className="traceroute-default">Unable to parse the traceroute for {tracerouteData.data.platform}</div>
+  }
 }
 
 export default TraceRoute;

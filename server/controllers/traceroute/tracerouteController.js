@@ -19,9 +19,10 @@ const traceroute = async (req, res) => {
   try {
     switch (platform) {
       case "linux":
-        return linuxTraceroute(res, destination);
+        return linuxTraceroute(res, destination, platform);
       case "win32":
-        return win32Traceroute(res, destination);
+      case "win63":
+        return win32Traceroute(res, destination, platform);
       default:
         return res
           .status(400)

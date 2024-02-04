@@ -12,12 +12,11 @@ import { totalCoreUsage } from "../cpu/modules/cpuCalculations";
 // Dashboard CSS Styles
 import "./styles/styles.css";
 import TraceRouteForm from "../tracerouteForm/TraceRouteForm";
+import TraceRoute from "../traceroute/TraceRoute";
 
 function Dashboard() {
   const { systemInformation } = useContext(AuthContext);
   const [tracerouteData, setTraceRouteData] = useState({});
-
-  console.log("SystemInformation Object: ", systemInformation)
 
   /**
    * @todo create a loading animation while websocket connection is being made
@@ -45,15 +44,9 @@ function Dashboard() {
         <div className="grid-item col2">Column 2, Row 1</div>
         {/* GRID 3 */}
         <div className="grid-item col3">
-          {tracerouteData &&
-            tracerouteData.data &&
-            tracerouteData.data.map((data, index) => {
-              return (
-                <div key={index}>
-                  Hop: {data.hop}, IP: {data.ip}, RTT1: {data.rtt1}
-                </div>
-              );
-            })}
+          {tracerouteData && tracerouteData.data && (
+            <TraceRoute tracerouteData={tracerouteData} />
+          )}
         </div>
         {/* GRID 4 | Disk & Memory */}
         <div className="grid-item col4">

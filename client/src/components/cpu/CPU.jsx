@@ -2,10 +2,10 @@
 import CPUCores from "./subComponents/CPUCores";
 
 // Local Component Styles
-import "./styles/styles.css"
+import "./styles/styles.css";
 
 /**
- * Creates to display all cpu cores and their resource usage information 
+ * Creates to display all cpu cores and their resource usage information
  * - core #
  * - system, usage by the kernel process
  * - user, usage by user less system kernel processes
@@ -17,7 +17,6 @@ import "./styles/styles.css"
  * @returns the cpu cores information
  */
 function CPU({ cpu }) {
-  console.log("PC Resources:\n", cpu);
   const cpuUsageComponents = cpu.cpuUsage.map((cpu, index) => {
     return (
       <CPUCores
