@@ -38,9 +38,9 @@ yarn teardown
 
 This might be useful if you want to copy the directory to a zip without dragging the entire node_modules library with you.
 
-## Dependencies
+## Dependencies LINUX
 
-In addition to the `package.json` dependencies that will be install when you run `yarn setup` there are other packages that will need to be installed from your terminal locally. The following installation instructions are `bash` commands specific to Linux. If you are trying to run this program in VSCode but you are using Microsft OS, this program will NOT work. Install WSL or use a linux system.
+In addition to the `package.json` dependencies that will be install when you run `yarn setup` there are other packages that will need to be installed from your terminal locally. The following installation instructions are `bash` commands specific to Linux.
 
 You will need the following packages installed on your local pc.
 
@@ -50,3 +50,7 @@ You will need the following packages installed on your local pc.
 # Install Traceroute
 sudo apt update && sudo apt upgrade -y && sudo apt install traceroute
 ```
+
+## Dependencies Microsoft
+
+- Traceroute is a linux specific package. Windows uses `tracert` and the server code could be modified for your MSFT OS to use 'tracert'.
