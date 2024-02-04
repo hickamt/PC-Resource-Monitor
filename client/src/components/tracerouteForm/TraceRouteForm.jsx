@@ -7,38 +7,45 @@ import "./styles/styles.css";
 // POST API
 import expressPostAPI from "../../api/expressAPI";
 
+/**
+ * Takes user input for web host to trace route and sets the return
+ * data from server.
+ * Form expects a web host name: string (i.e. myWebsite.com)
+ * @param {useState setter} setTraceRouteData
+ * @returns a form component with text input, submit, and clear buttons
+ */
 function TraceRouteForm({ setTraceRouteData }) {
-  const [domain, setDomain] = useState("");
+  const [hostName, setHostName] = useState("");
 
   const handleTraceRoute = async (event) => {
     event.preventDefault();
-    if (domain) {
-      const data = await expressPostAPI("traceroute", domain);
-      console.log("Trace Route Data: ", data)
+    if (hostName) {
+      const data = await expressPostAPI("traceroute", hostName);
+      console.log("Trace Route Data: ", data);
       setTraceRouteData(data);
-      setDomain(""); // reset the domain state
+      setHostName(""); // reset the domain state
     }
   };
 
   const handleInputChange = (event) => {
-    setDomain(event.target.value);
+    setHostName(event.target.value);
   };
 
   const clearInput = () => {
-    setDomain("");
+    setHostName("");
   };
 
   return (
     <div className="traceroute">
       <form onSubmit={handleTraceRoute}>
         <label htmlFor="domain" className="traceroute-label">
-          Enter A Domain:
+          Web Host Name:
         </label>
         <input
           id="domain"
           type="text"
           className="domain traceroute-input"
-          value={domain}
+          value={hostName}
           onChange={handleInputChange}
         />
         <div className="btn-container">
