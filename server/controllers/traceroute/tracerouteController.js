@@ -1,7 +1,8 @@
 // Source: https://www.npmjs.com/package/nodejs-traceroute
 const trace = require("nodejs-traceroute");
 const os = require("os");
-const { exec } = require('child_process');
+const { exec } = require("child_process");
+const linuxTraceroute = require("./linux/linuxPlatform");
 
 /**
  * Uses a string input (i.e. "google.com") to initiate
@@ -10,39 +11,24 @@ const { exec } = require('child_process');
  * @returns the information gathered from traceroute
  */
 const traceroute = async (req, res) => {
+  const platform = os.platform();
   const destination = req.body.data;
 
   console.log("Platform using 'os': ", os.platform());
 
   try {
-    if (os.platform() === "linux") {
-      const tracer = new trace();
-      const result = await new Promise((resolve, reject) => {
-        const hops = [];
+    switch (platform) {
+      case "linux":
+        return linuxTraceroute(res, destination);
+      case "win32":
+        return win32Traceroute(res, destination);
+      default:
+        return res
+          .status(400)
+          .json({ message: `Unknown platform ${platform}` });
+    }
 
-        tracer
-          .on("pid", (pid) => {
-            console.log(`pid: ${pid}`);
-          })
-          .on("destination", (destination) => {
-            console.log(`destination: ${destination}`);
-          })
-          .on("hop", (hop) => {
-            console.log(`hop: ${JSON.stringify(hop)}`);
-            hops.push(hop);
-          })
-          .on("close", (code) => {
-            console.log(`close: code ${code}`);
-            resolve(hops);
-          })
-          .on("error", (error) => {
-            reject(error);
-          });
-
-        tracer.trace(destination);
-      });
-      return res.status(200).json(result);
-    } else if (os.platform() === "win32" || os.platform() === "win64") {
+    if (os.platform() === "win32" || os.platform() === "win64") {
       exec(`tracert ${destination}`, (error, stdout, stderr) => {
         if (error) {
           console.error(`exec error: ${error}`);

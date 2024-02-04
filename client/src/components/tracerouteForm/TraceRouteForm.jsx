@@ -7,7 +7,7 @@ import "./styles/styles.css";
 // POST API
 import expressPostAPI from "../../api/expressAPI";
 
-function TraceRoute({ setTraceRouteData }) {
+function TraceRouteForm({ setTraceRouteData }) {
   const [domain, setDomain] = useState("");
 
   const handleTraceRoute = async (event) => {
@@ -54,4 +54,4 @@ function TraceRoute({ setTraceRouteData }) {
   );
 }
 
-export default TraceRoute;
+export default TraceRouteForm;

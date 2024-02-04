@@ -91,3 +91,11 @@ body {
 .grid-item.col5 {
   grid-area: col5;
 }
+
+.traceroute-row1 {
+  border: 1px solid white;
+}
+
+.tcpdump-row2 {
+  border: 1px solid white;
+}

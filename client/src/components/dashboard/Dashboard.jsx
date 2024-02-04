@@ -11,7 +11,7 @@ import { totalCoreUsage } from "../cpu/modules/cpuCalculations";
 
 // Dashboard CSS Styles
 import "./styles/styles.css";
-import TraceRoute from "../traceroute/TraceRoute";
+import TraceRouteForm from "../tracerouteForm/TraceRouteForm";
 
 function Dashboard() {
   const { systemInformation } = useContext(AuthContext);
@@ -82,7 +82,7 @@ function Dashboard() {
         <div className="grid-item col5">
           <div className="traceroute-row1">
             <h3 className="pentest-container">Traceroute</h3>
-            <TraceRoute setTraceRouteData={setTraceRouteData} />
+            <TraceRouteForm setTraceRouteData={setTraceRouteData} />
           </div>
           <div className="tcpdump-row2">
             <h3 className="title">Standard Tests</h3>
