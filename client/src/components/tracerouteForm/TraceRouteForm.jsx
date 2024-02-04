@@ -19,26 +19,38 @@ function TraceRouteForm({ setTraceRouteData, setTracertData, platform }) {
   // API Endpoint Expects traceType: { 'traceroute' || 'tracertWSL' || tracertWin32' }
   const [traceType, setTraceType] = useState("");
 
+  // Default to windows 32 os platform
   useEffect(() => {
     if (platform === "win32") {
       setTraceType("tracertWin32");
     }
   }, [platform]);
 
+  // TraceType Options for Linux WSL Only
   const handleTraceTypeChange = (event) => {
     setTraceType(event.target.value);
   };
 
+  // Fetch Traceroute Data
   const handleTraceRoute = async (event) => {
     event.preventDefault();
     if (targetURL) {
-      const data = await expressPostAPI("traceroute", targetURL);
-      if (traceType === "traceroute") {
-        setTraceRouteData(data);
-      } else {
-        setTracertData(data);
+      try {
+        const data = await expressPostAPI("traceroute", {
+          targetURL: targetURL,
+          traceType: traceType,
+        });
+        if (traceType === "traceroute") {
+          setTraceRouteData(data);
+        } else {
+          setTracertData(data);
+        }
+        setTargetURL(""); // reset the domain state
+      } catch (error) {
+        alert(`Unable to complete the ${traceType} request.
+        NOTE: tracertWSL only works for Windows WSL Linux users.`);
+        console.error("Traceroute Error:\n", error);
       }
-      setTargetURL(""); // reset the domain state
     }
   };
 
@@ -52,6 +64,7 @@ function TraceRouteForm({ setTraceRouteData, setTracertData, platform }) {
 
   return (
     <div className="traceroute">
+      <h5 className="tracetype-title">Selected: {traceType}</h5>
       <form onSubmit={handleTraceRoute}>
         <label htmlFor="domain" className="traceroute-label">
           Website Target:

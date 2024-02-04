@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 function LinuxPlatform({ traceData }) {
   const { platform, destPID, ipAddress, hops } = traceData.data;
   console.log(platform, destPID, ipAddress, hops);
