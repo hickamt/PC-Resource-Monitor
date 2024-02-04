@@ -45,7 +45,8 @@ function Dashboard() {
         {/* GRID 3 */}
         <div className="grid-item col3">
           {tracerouteData && tracerouteData.data && (
-            <TraceRoute tracerouteData={tracerouteData} />
+            console.log("Client Trace Data: ", tracerouteData.data)
+            // <TraceRoute tracerouteData={tracerouteData} />
           )}
         </div>
         {/* GRID 4 | Disk & Memory */}

@@ -1,7 +1,7 @@
 // Source: https://www.npmjs.com/package/nodejs-traceroute
 const trace = require("nodejs-traceroute");
 
-const linuxTraceroute = async (res, destination, platform = "linux") => {
+const linuxTraceroute = async (res, destination) => {
   const tracer = new trace();
   const result = await new Promise((resolve, reject) => {
     let destPID = null;
@@ -15,7 +15,7 @@ const linuxTraceroute = async (res, destination, platform = "linux") => {
       })
       .on("destination", (destination) => {
         console.log(`destination: ${destination}`);
-        ipAddress = destination
+        ipAddress = destination;
       })
       .on("hop", (hop) => {
         console.log(`hop: ${JSON.stringify(hop)}`);
@@ -23,7 +23,7 @@ const linuxTraceroute = async (res, destination, platform = "linux") => {
       })
       .on("close", (code) => {
         console.log(`close: code ${code}`);
-        resolve({destPID, ipAddress, hops, platform});
+        resolve({ destPID, ipAddress, hops });
       })
       .on("error", (error) => {
         reject(error);
@@ -31,7 +31,6 @@ const linuxTraceroute = async (res, destination, platform = "linux") => {
 
     tracer.trace(destination);
   });
-  console.log("linuxTraceroute Result: ", result)
   return res.status(200).json(result);
 };
 

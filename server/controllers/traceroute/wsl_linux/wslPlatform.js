@@ -29,18 +29,22 @@ const parseStdout = (stdout) => {
   return data;
 };
 
-const win32Traceroute = async (res, destination) => {
-  exec(`tracert ${destination}`, (error, stdout, stderr) => {
+const wslTraceroute = async (res, destination) => {
+  exec("cmd.exe /C tracert " + destination, (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
-      return res.status(500).json({ message: "Error executing tracert" });
+      return res.status(500).json({ message: "Error executing wsl cmd.exe tracert" });
     }
+
     console.log(`stdout: ${stdout}`);
     console.error(`stderr: ${stderr}`);
-    return res
-      .status(200)
-      .json({ message: "Tracert executed successfully", data: stdout });
+
+    return res.status(200).json({
+      message: "WSL cmd.exe tracert executed successfully",
+      data: parseStdout(stdout),
+      destination: destination,
+    });
   });
 };
 
-module.exports = win32Traceroute;
+module.exports = wslTraceroute;

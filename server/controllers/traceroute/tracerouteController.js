@@ -2,6 +2,8 @@
 const trace = require("nodejs-traceroute");
 const os = require("os");
 const { exec } = require("child_process");
+const wslTraceroute = require("./wsl_linux/wslPlatform")
+const win32Traceroute = require("./win32/win32Platform")
 const linuxTraceroute = require("./linux/linuxPlatform");
 
 /**
@@ -19,10 +21,11 @@ const traceroute = async (req, res) => {
   try {
     switch (platform) {
       case "linux":
-        return linuxTraceroute(res, destination, platform);
+        return win32Traceroute(res, destination);
+        // return linuxTraceroute(res, destination, platform);
       case "win32":
       case "win63":
-        return win32Traceroute(res, destination, platform);
+        return win32Traceroute(res, destination);
       default:
         return res
           .status(400)
