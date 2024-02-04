@@ -6,7 +6,7 @@ function LinuxPlatform({ traceData }) {
     <div className="linux-container">
       <div className="linux-item">Trace cmd: {traceType}</div>
       <div className="linux-item">PID: {destPID}</div>
-      <div className="linux-item">Target IP: {ipAddress}</div>
+      <div className="linux-item">Target: {ipAddress}</div>
       <table>
         <thead>
           <tr>

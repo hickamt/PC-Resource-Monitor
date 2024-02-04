@@ -18,7 +18,6 @@ const parseStdout = (stdout) => {
         ms1: parts[1],
         ms2: parts[3],
         ms3: parts[5],
-        ipName: parts[6],
         ip: parts[7] === "*" ? "Request timed out" : parts[7],
       });
     }
@@ -30,6 +29,7 @@ const parseStdout = (stdout) => {
 };
 
 const wslTraceroute = async (res, targetURL) => {
+  console.log("wslTraceroute called with targetURL: ", targetURL)
   exec("cmd.exe /C tracert " + targetURL, (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
@@ -45,7 +45,7 @@ const wslTraceroute = async (res, targetURL) => {
       message: "WSL cmd.exe tracert executed successfully",
       data: stdout,
       parsedData: parseStdout(stdout),
-      destination: targetURL,
+      targetURL: targetURL,
       traceType: "tracertWSL",
     });
   });

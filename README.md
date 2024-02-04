@@ -58,3 +58,18 @@ sudo apt update && sudo apt upgrade -y && sudo apt install traceroute
 ## Dependencies Microsoft
 
 - Traceroute is a linux specific package. Windows uses `tracert` and the server code could be modified for your MSFT OS to use 'tracert'.
+
+## Websites To Test Against or Learn From
+
+- [Source: SecurityTrails "Top 12 Vulnerable Websites For Pen Testing ..."](https://securitytrails.com/blog/vulnerable-websites-for-penetration-testing)
+
+1.  [Hack The Box](https://www.hackthebox.com/)
+2.  [CTFlearn](https://ctflearn.com/)
+3.  [HackThisSite](https://www.hackthissite.org/)
+4.  [Google Gruyere](https://www.forensicxs.com/google-gruyere/)
+5.  [GitHub Download: Damn Vulnerable iOS App - DVIA](https://github.com/prateek147/DVIA-v2)
+6.  [Hellbound Hackers](https://hbh.sh/home)
+7.  [OWASP: Multillidae II](https://owasp.org/www-project-mutillidae-ii/)
+8.  [OWASP: WebGoat](https://owasp.org/www-project-webgoat/)
+9.  [Root Me](https://www.root-me.org/?lang=en)
+10. [OverTheWire](https://overthewire.org/wargames/)
