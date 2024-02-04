@@ -38,7 +38,6 @@ const calculateCpuUsage = () => {
 const getResources = async () => {
   let graphicsData = null;
   try {
-    // const cpuUsage = os.cpus();
     const cpuUsage = calculateCpuUsage();
     const totalMemory = os.totalmem();
     const freeMemory = os.freemem();
