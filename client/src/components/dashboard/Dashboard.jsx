@@ -15,6 +15,8 @@ import TraceRouteForm from "../tracerouteForm/TraceRouteForm";
 import TraceRoute from "../traceroute/TraceRoute";
 
 function Dashboard() {
+  // Error: {endpoint, message, name, stack, response, request, config}
+  const [apiError, setApiError] = useState(null);
   const { systemInformation } = useContext(AuthContext);
   const [tracerouteData, setTraceRouteData] = useState({});
   const [tracertData, setTracertData] = useState({});
@@ -49,7 +51,7 @@ function Dashboard() {
           <TraceRoute
             tracerouteData={tracerouteData}
             tracertData={tracertData}
-            platform={systemInformation.platform}
+            apiError={apiError}
           />
         </div>
         {/* GRID 4 | Disk & Memory */}
@@ -82,6 +84,7 @@ function Dashboard() {
             <TraceRouteForm
               setTraceRouteData={setTraceRouteData}
               setTracertData={setTracertData}
+              setApiError={setApiError}
               platform={systemInformation.platform}
             />
           </div>

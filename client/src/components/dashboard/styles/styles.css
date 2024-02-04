@@ -48,6 +48,7 @@ body {
 .grid-item.col3 {
   grid-row: 1 / span 3;
   grid-area: col3;
+  overflow-y: auto;
 }
 
 /* GRID 4 | Disk & Memory  */

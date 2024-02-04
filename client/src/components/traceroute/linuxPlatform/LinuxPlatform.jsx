@@ -28,6 +28,9 @@ function LinuxPlatform({ traceData }) {
           )}
         </tbody>
       </table>
+      <div className="win32-end">
+        -------------------------------------------
+      </div>
     </div>
   );
 }

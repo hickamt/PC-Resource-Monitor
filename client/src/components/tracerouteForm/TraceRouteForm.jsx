@@ -14,7 +14,7 @@ import expressPostAPI from "../../api/expressAPI";
  * @param {useState setter} setTraceRouteData
  * @returns a form component with text input, submit, and clear buttons
  */
-function TraceRouteForm({ setTraceRouteData, setTracertData, platform }) {
+function TraceRouteForm({ setTraceRouteData, setTracertData, setApiError, platform }) {
   const [targetURL, setTargetURL] = useState("");
   // API Endpoint Expects traceType: { 'traceroute' || 'tracertWSL' || tracertWin32' }
   const [traceType, setTraceType] = useState("");
@@ -51,7 +51,7 @@ function TraceRouteForm({ setTraceRouteData, setTracertData, platform }) {
         const data = await expressPostAPI("traceroute", {
           targetURL: targetURL,
           traceType: traceType,
-        });
+        }, setApiError);
         if (traceType === "traceroute") {
           setTraceRouteData(data);
         } else {
