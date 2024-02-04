@@ -17,6 +17,8 @@ function Dashboard() {
   const { systemInformation } = useContext(AuthContext);
   const [tracerouteData, setTraceRouteData] = useState({});
 
+  console.log("SystemInformation Object: ", systemInformation)
+
   /**
    * @todo create a loading animation while websocket connection is being made
    * and resources are being created from server side.
@@ -37,13 +39,14 @@ function Dashboard() {
             {systemInformation.cpuUsage[0].model} | CPU (
             {totalCoreUsage(systemInformation.cpuUsage).toFixed(2)}%)
           </h3>
-          <CPU systemInformation={systemInformation} />
+          <CPU cpu={systemInformation} />
         </div>
         {/* GRID 2 */}
         <div className="grid-item col2">Column 2, Row 1</div>
         {/* GRID 3 */}
         <div className="grid-item col3">
-          {tracerouteData && tracerouteData.data && 
+          {tracerouteData &&
+            tracerouteData.data &&
             tracerouteData.data.map((data, index) => {
               return (
                 <div key={index}>
@@ -77,8 +80,14 @@ function Dashboard() {
         </div>
         {/* GRID 5 */}
         <div className="grid-item col5">
-          <h3 className="pentest-container">TCPDump & Traceroute</h3>
-          <TraceRoute setTraceRouteData={setTraceRouteData} />
+          <div className="traceroute-row1">
+            <h3 className="pentest-container">Traceroute</h3>
+            <TraceRoute setTraceRouteData={setTraceRouteData} />
+          </div>
+          <div className="tcpdump-row2">
+            <h3 className="title">Standard Tests</h3>
+            {/* Dropdown of standard GET request tests */}
+          </div>
         </div>
       </div>
     );

@@ -18,7 +18,7 @@
  * @returns a single CPU resource information component with all
  * values in percentage of use.
  */
-function CPUCore({ core, system, user, nice, idle, irq }) {
+function CPUCore({ core, usage, system, user, nice, idle, irq }) {
   const total = system + user + nice + idle + irq;
 
   if (!total || total <= 0) {
@@ -34,7 +34,8 @@ function CPUCore({ core, system, user, nice, idle, irq }) {
     );
   }
 
-  const coreTotal = ((total - idle) / total) * 100;
+  // const coreTotal = ((total - idle) / total) * 100;
+  const coreTotal = usage;
   const systemPct = (system / total) * 100;
   const userPct = (user / total) * 100;
   const nicePct = (nice / total) * 100;

@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"yarn server\" \"yarn client\"",
-    "setup": "cd server && yarn && cd ../client && yarn",
-    "teardown": "cd server && rm -rf yarn.lock && cd ../client && rm -rf yarn.lock node_modules",
+    "setup": "yarn && cd server && yarn && cd ../client && yarn",
+    "teardown": "rm -rf node_modules yarn-error.log yarn.lock && cd server && rm -rf yarn.lock && cd ../client && rm -rf yarn.lock node_modules",
     "server": "cd server && yarn dev",
     "client": "cd client && yarn dev"
   },

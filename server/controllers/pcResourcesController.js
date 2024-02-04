@@ -10,6 +10,26 @@ const os = require("os");
 const diskusage = require("diskusage");
 const systemInformation = require("systeminformation");
 
+const calculateCpuUsage = () => {
+  const cpus = os.cpus();
+  return cpus.map((cpu, i) => {
+    const total = Object.keys(cpu.times).reduce(
+      (last, type) => last + cpu.times[type],
+      0
+    );
+    return {
+      core: (i + 1),
+      model: cpu.model,
+      usage: (1 - cpu.times.idle / total) * 100,
+      idle: cpu.times.idle,
+      system: cpu.times.sys,
+      user: cpu.times.user,
+      nice: cpu.times.nice,
+      irq: cpu.times.irq,
+    };
+  });
+};
+
 /**
  * GET request for pc monitoring resources such as:
  * CPU, GPU, Disk Space, Free Disk Space, etc . . .
@@ -18,7 +38,8 @@ const systemInformation = require("systeminformation");
 const getResources = async () => {
   let graphicsData = null;
   try {
-    const cpuUsage = os.cpus();
+    // const cpuUsage = os.cpus();
+    const cpuUsage = calculateCpuUsage();
     const totalMemory = os.totalmem();
     const freeMemory = os.freemem();
     const networkInterfaces = os.networkInterfaces();

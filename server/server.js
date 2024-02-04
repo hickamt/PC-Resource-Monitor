@@ -64,8 +64,8 @@ wss.on("connection", (ws) => {
   };
 
   sendResources();
-  // Current interval time of (1) minute. Change as needed
-  const intervalId = setInterval(sendResources, 60000);
+  // Current interval time (where, 1000 ms === 1 sec)
+  const intervalId = setInterval(sendResources, 5000);
 
   ws.on("close", () => {
     console.log("Client disconnected");

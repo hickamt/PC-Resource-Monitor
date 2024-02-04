@@ -13,20 +13,21 @@ import "./styles/styles.css"
  * - idle, idle time for each core
  * - irq, system interrupt processes
  * @param {number} key
- * @param {object: {times: {sys: number, user: number, nice: number, idle: number, irq: number}}} systemInformation passed down from dashboard
+ * @param {object: {sys: number, user: number, nice: number, idle: number, irq: number}} systemInformation passed down from dashboard
  * @returns the cpu cores information
  */
-function CPU({ systemInformation }) {
-  console.log("PC Resources:\n", systemInformation);
-  const cpuUsageComponents = systemInformation.cpuUsage.map((cpu, index) => {
+function CPU({ cpu }) {
+  console.log("PC Resources:\n", cpu);
+  const cpuUsageComponents = cpu.cpuUsage.map((cpu, index) => {
     return (
       <CPUCores
-        core={index + 1}
-        system={cpu.times.sys}
-        user={cpu.times.user}
-        nice={cpu.times.nice}
-        idle={cpu.times.idle}
-        irq={cpu.times.irq}
+        core={cpu.core}
+        usage={cpu.usage}
+        system={cpu.system}
+        user={cpu.user}
+        nice={cpu.nice}
+        idle={cpu.idle}
+        irq={cpu.irq}
         key={index}
       />
     );
