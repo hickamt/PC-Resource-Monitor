@@ -1,12 +1,10 @@
 # PC System Monitoring Information
 
-This application is meant to run locally (server: localhost:5500, client: localhost:5173). The application was built in WSL using Ubuntu. The commands used and packages (such as 'traceroute') will not work on the Microsoft (MSFT) OS, where MSFT uses 'tracert'.
+This application is meant to run locally (server: localhost:5500, client: localhost:5173).
 
 All CPU, Disk, and Memory information will be specific to the machine you spin the server up on. In my case, I tested this in MSFT VSCode in the WSL Ubuntu VM which produces the cores available on the machine but only displays the usage of the VM and not the actual MSFT OS usage of the CPU's.
 
-After installing `yarn` and `Node` in MSFT, I ran the application again and could see the actual usage of the CPU's. But remember, I have not changed the `traceroute` configuration to work with MSFT which uses `tracert`.
-
-At the time of creating this application I am running:
+Created Application Using:
 
 ```bash
 Node v20.9.0
@@ -57,7 +55,7 @@ sudo apt update && sudo apt upgrade -y && sudo apt install traceroute
 
 ## Dependencies Microsoft
 
-- Traceroute is a linux specific package. Windows uses `tracert` and the server code could be modified for your MSFT OS to use 'tracert'.
+- `tracert` this should be included for Windows users. If you are using Windows WSL, you can choose the `tracertWSL` option. DO NOT choose this option for standard Linux Distro's
 
 ## Websites To Test Against or Learn From
 
