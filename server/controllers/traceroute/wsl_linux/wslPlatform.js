@@ -33,7 +33,9 @@ const wslTraceroute = async (res, destination) => {
   exec("cmd.exe /C tracert " + destination, (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
-      return res.status(500).json({ message: "Error executing wsl cmd.exe tracert" });
+      return res
+        .status(500)
+        .json({ message: "Error executing wsl cmd.exe tracert" });
     }
 
     console.log(`wsl tracert stdout: ${stdout}`);
@@ -41,8 +43,10 @@ const wslTraceroute = async (res, destination) => {
 
     return res.status(200).json({
       message: "WSL cmd.exe tracert executed successfully",
-      data: parseStdout(stdout),
-      destination: destination,
+      data: stdout,
+      parsedData: parseStdout(stdout),
+      testination: destination,
+      traceType: "tracert",
     });
   });
 };

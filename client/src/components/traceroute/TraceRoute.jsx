@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import LinuxPlatform from "./linuxPlatform/LinuxPlatform";
 
 function TraceRoute({tracerouteData}) {

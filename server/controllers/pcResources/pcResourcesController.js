@@ -18,7 +18,7 @@ const calculateCpuUsage = () => {
       0
     );
     return {
-      core: (i + 1),
+      core: i + 1,
       model: cpu.model,
       usage: (1 - cpu.times.idle / total) * 100,
       idle: cpu.times.idle,
@@ -43,6 +43,7 @@ const getResources = async () => {
     const freeMemory = os.freemem();
     const networkInterfaces = os.networkInterfaces();
     const path = os.platform() === "win32" ? "c:" : "/";
+    const platform = os.platform();
     const diskUsage = await diskusage.check(path);
 
     try {
@@ -61,6 +62,7 @@ const getResources = async () => {
         freeMemory,
         networkInterfaces,
         diskUsage,
+        platform,
         graphicsData,
       };
     } else {
@@ -70,6 +72,7 @@ const getResources = async () => {
         freeMemory,
         networkInterfaces,
         diskUsage,
+        platform,
       };
     }
   } catch (error) {

@@ -35,6 +35,7 @@ function Dashboard() {
         {/* GRID 1 | CPU */}
         <div className="grid-item col1">
           <h3 className="cpu-header">
+            {systemInformation.platform.toUpperCase()} |{" "}
             {systemInformation.cpuUsage[0].model} | CPU (
             {totalCoreUsage(systemInformation.cpuUsage).toFixed(2)}%)
           </h3>
@@ -44,10 +45,14 @@ function Dashboard() {
         <div className="grid-item col2">Column 2, Row 1</div>
         {/* GRID 3 */}
         <div className="grid-item col3">
-          {tracerouteData && tracerouteData.data && (
-            console.log("Client Trace Data: ", tracerouteData.data)
+          {tracerouteData &&
+            tracerouteData.data &&
+            console.log(
+              "Client Trace Data: ",
+              tracerouteData.data
+            )
             // <TraceRoute tracerouteData={tracerouteData} />
-          )}
+          }
         </div>
         {/* GRID 4 | Disk & Memory */}
         <div className="grid-item col4">

@@ -23,7 +23,7 @@ const linuxTraceroute = async (res, destination) => {
       })
       .on("close", (code) => {
         console.log(`close: code ${code}`);
-        resolve({ destPID, ipAddress, hops });
+        resolve({ destPID, ipAddress, hops, traceType: "traceroute" });
       })
       .on("error", (error) => {
         reject(error);

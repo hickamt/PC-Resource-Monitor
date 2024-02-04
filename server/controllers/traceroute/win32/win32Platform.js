@@ -42,6 +42,7 @@ const win32Traceroute = async (res, destination) => {
       data: stdout,
       parsedData: parseStdout(stdout),
       destination: destination,
+      traceType: "tracert",
     });
   });
 };
