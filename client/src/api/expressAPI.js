@@ -9,6 +9,7 @@ import axios from "axios";
  * @returns the Post request object
  */
 async function expressPostAPI(endpoint, data) {
+  console.log("express api called with Endpoint: ", endpoint, "\nData: ", data)
   try {
     const response = await axios.post(
       `http://localhost:5500/${endpoint}`,

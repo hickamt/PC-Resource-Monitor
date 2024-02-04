@@ -14,12 +14,13 @@ const linuxTraceroute = require("./linux/linuxPlatform");
 const traceroute = async (req, res) => {
   const { targetURL, traceType } = req.body.data;
 
-  console.log("Platform using 'os': ", os.platform());
+  console.log("Server Has TargetURL: ", targetURL)
+  console.log("Server Has TraceType: ", traceType)
 
   try {
     switch (traceType) {
       case "traceroute":
-        return linuxTraceroute(res, targetURL, platform);
+        return linuxTraceroute(res, targetURL);
       case "tracertWSL":
         return wslTraceroute(res, targetURL);
       case "tracertWin32":

@@ -1,17 +1,23 @@
 /* eslint-disable react/prop-types */
 import LinuxPlatform from "./linuxPlatform/LinuxPlatform";
 
-function TraceRoute({ tracerouteData, platform }) {
+function TraceRoute({ tracerouteData, tracertData, platform }) {
   switch (platform) {
     case "linux":
-      return <LinuxPlatform traceData={tracerouteData} />;
+      if (tracerouteData && tracerouteData.data) {
+        return <LinuxPlatform traceData={tracerouteData} />;
+      }
+      break;
     case "win32":
-      console.log("win32 data: ", tracerouteData);
-      return;
+      if (tracertData && tracertData.parsedData) {
+        console.log("Tracert Data", tracertData);
+        return;
+      }
+      break;
     default:
       return (
         <div className="traceroute-default">
-          Unable to parse the traceroute for {tracerouteData.data.platform}
+          Unable to parse the traceroute for {platform}
         </div>
       );
   }

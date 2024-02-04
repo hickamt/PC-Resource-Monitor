@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 function LinuxPlatform({ traceData }) {
-  const { platform, destPID, ipAddress, hops } = traceData.data;
-  console.log(platform, destPID, ipAddress, hops);
+  const { traceType, destPID, ipAddress, hops } = traceData.data;
+
   return (
     <div className="linux-container">
-      <div className="linux-title">Platform: {platform}</div>
+      <div className="linux-item">Trace cmd: {traceType}</div>
       <div className="linux-item">PID: {destPID}</div>
       <div className="linux-item">Target IP: {ipAddress}</div>
       <table>

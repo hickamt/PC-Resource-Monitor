@@ -29,8 +29,8 @@ const parseStdout = (stdout) => {
   return data;
 };
 
-const wslTraceroute = async (res, destination) => {
-  exec("cmd.exe /C tracert " + destination, (error, stdout, stderr) => {
+const wslTraceroute = async (res, targetURL) => {
+  exec("cmd.exe /C tracert " + targetURL, (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
       return res
@@ -45,8 +45,8 @@ const wslTraceroute = async (res, destination) => {
       message: "WSL cmd.exe tracert executed successfully",
       data: stdout,
       parsedData: parseStdout(stdout),
-      testination: destination,
-      traceType: "tracert",
+      destination: targetURL,
+      traceType: "tracertWSL",
     });
   });
 };

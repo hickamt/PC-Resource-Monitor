@@ -1,7 +1,8 @@
 // Source: https://www.npmjs.com/package/nodejs-traceroute
 const trace = require("nodejs-traceroute");
 
-const linuxTraceroute = async (res, destination) => {
+const linuxTraceroute = async (res, targetURL) => {
+  console.log("linuxTraceroute Called: ", targetURL)
   const tracer = new trace();
   const result = await new Promise((resolve, reject) => {
     let destPID = null;
@@ -28,7 +29,7 @@ const linuxTraceroute = async (res, destination) => {
       .on("error", (error) => {
         reject(error);
       });
-    tracer.trace(destination);
+    tracer.trace(targetURL);
   });
   console.log("traceroute: ", result)
   return res.status(200).json(result);

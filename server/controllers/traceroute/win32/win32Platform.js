@@ -29,8 +29,8 @@ const parseStdout = (stdout) => {
   return data;
 };
 
-const win32Traceroute = async (res, destination) => {
-  exec(`tracert ${destination}`, (error, stdout, stderr) => {
+const win32Traceroute = async (res, targetURL) => {
+  exec(`tracert ${targetURL}`, (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
       return res.status(500).json({ message: "Error executing tracert" });
@@ -41,8 +41,8 @@ const win32Traceroute = async (res, destination) => {
       message: "Tracert executed successfully",
       data: stdout,
       parsedData: parseStdout(stdout),
-      destination: destination,
-      traceType: "tracert",
+      targetURL: targetURL,
+      traceType: "tracertWin32",
     });
   });
 };

@@ -24,12 +24,24 @@ function TraceRouteForm({ setTraceRouteData, setTracertData, platform }) {
     if (platform === "win32") {
       setTraceType("tracertWin32");
     }
+    else {
+      setTraceType('traceroute')
+    }
   }, [platform]);
 
   // TraceType Options for Linux WSL Only
   const handleTraceTypeChange = (event) => {
     setTraceType(event.target.value);
   };
+
+  const handleInputChange = (event) => {
+    setTargetURL(event.target.value);
+  };
+
+  const clearInput = () => {
+    setTargetURL("");
+  };
+
 
   // Fetch Traceroute Data
   const handleTraceRoute = async (event) => {
@@ -52,14 +64,6 @@ function TraceRouteForm({ setTraceRouteData, setTracertData, platform }) {
         console.error("Traceroute Error:\n", error);
       }
     }
-  };
-
-  const handleInputChange = (event) => {
-    setTargetURL(event.target.value);
-  };
-
-  const clearInput = () => {
-    setTargetURL("");
   };
 
   return (
