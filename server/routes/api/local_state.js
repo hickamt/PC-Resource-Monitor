@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const localStateController = require("../../controllers/localStateController");
+const localStateController = require("../../controllers/localState/localStateController");
 
 router
   .route("/")

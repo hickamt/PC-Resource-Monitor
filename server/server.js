@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5500;
 const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
 // WEBSOCKET FILE IMPORT (CLIENT ENDPOINT)
-const pcResourcesController = require("./controllers/pcResourcesController");
+const pcResourcesController = require("./controllers/pcResources/pcResourcesController")
 
 // MIDDLEWARE
 app.use(cors(corsOptions));
